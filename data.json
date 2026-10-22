@@ -1,5 +1,5 @@
 {
- "updated": 1792687415342,
+ "updated": 1792687709155,
  "plan": {
   "days": [
    {
@@ -204,7 +204,7 @@
     "Incline Dumbbell Press": [
      {
       "w": "",
-      "r": "",
+      "r": "8",
       "done": false
      },
      {
@@ -286,7 +286,7 @@
    "checks": {},
    "note": "",
    "finished": false,
-   "updated": 1792687415342
+   "updated": 1792687709155
   }
  }
 }

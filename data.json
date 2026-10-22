@@ -1,5 +1,5 @@
 {
- "updated": 0,
+ "updated": 1792685628068,
  "plan": {
   "days": [
    {
@@ -254,7 +254,7 @@
     ],
     "Dumbbell Lateral Raise": [
      {
-      "w": "",
+      "w": "6",
       "r": "",
       "done": false
      },
@@ -286,7 +286,7 @@
    "checks": {},
    "note": "",
    "finished": false,
-   "updated": 0
+   "updated": 1792685628068
   }
  }
 }

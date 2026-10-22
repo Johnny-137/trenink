@@ -1,5 +1,5 @@
 {
- "updated": 1792689038132,
+ "updated": 1792690353177,
  "plan": {
   "days": [
    {
@@ -94,9 +94,10 @@
       "reps": "10"
      },
      {
-      "name": "Assisted Pull-Up (nebo Lat Pulldown)",
+      "name": "Single-Arm Cable Pulldown",
       "sets": 3,
-      "reps": "8"
+      "reps": "10-12",
+      "note": "široký sval zádový, po jedné ruce"
      },
      {
       "name": "Dumbbell Lateral Raise",
@@ -104,9 +105,10 @@
       "reps": "12-15"
      },
      {
-      "name": "Dumbbell Rear Delt Fly",
+      "name": "Cable Reverse Fly",
       "sets": 2,
-      "reps": "15"
+      "reps": "15",
+      "note": "zadní ramena a horní záda"
      }
     ]
    },

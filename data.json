@@ -1,5 +1,5 @@
 {
- "updated": 1792685982257,
+ "updated": 1792686179098,
  "plan": {
   "days": [
    {
@@ -89,7 +89,7 @@
       "reps": "10"
      },
      {
-      "name": "One-Arm Dumbbell Row",
+      "name": "Single-Arm Cable Row",
       "sets": 3,
       "reps": "10"
      },
@@ -218,7 +218,7 @@
       "done": false
      }
     ],
-    "One-Arm Dumbbell Row": [
+    "Single-Arm Cable Row": [
      {
       "w": "",
       "r": "",
@@ -286,7 +286,7 @@
    "checks": {},
    "note": "",
    "finished": false,
-   "updated": 1792685982257
+   "updated": 1792686179098
   }
  }
 }

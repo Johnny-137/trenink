@@ -270,6 +270,9 @@ function vToday() {
   for (const name of ex) {
     const info = p.exercises.find(x => x.name === name) || {}, r = rec[name];
     h += `<div class="card"><h3>${esc(name)}</h3><div class="mute">${info.sets ? `${info.sets}× ${esc(info.reps)}` : ''}${info.note ? ' · ' + esc(info.note) : ''}${r ? ` · 🏆 ${r.w} kg × ${r.r}` : ''}</div>`;
+    // progrese: minule všechny série na horní hranici opakování -> přidat
+    const prev = lastSets(name, curDate), top = parseInt(String(info.reps || '').split('-').pop());
+    if (top && prev?.length && prev.every(s => s.done && +s.r >= top)) h += `<div class="pr">⬆️ Minule jsi dal všechno, dnes přidej váhu nebo opakování!</div>`;
     e.sets[name].forEach((s, i) => {
       const isPr = s.done && r && +s.w >= r.w && r.date === curDate;
       h += `<div class="row"><span class="n">${i + 1}.</span>

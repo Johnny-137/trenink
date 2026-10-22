@@ -1,16 +1,202 @@
 {
  "updated": 0,
- "plan": { "days": [
-  { "name": "Pondělí", "title": "Push", "exercises": [ { "name": "Bench press", "sets": 4, "reps": "6-8" }, { "name": "Tlaky nad hlavu", "sets": 3, "reps": "8-10" } ] },
-  { "name": "Úterý", "title": "Pull", "exercises": [ { "name": "Shyby", "sets": 4, "reps": "max" }, { "name": "Přítahy v předklonu", "sets": 3, "reps": "8-10" } ] },
-  { "name": "Středa", "title": "Volno", "exercises": [] },
-  { "name": "Čtvrtek", "title": "Nohy", "exercises": [ { "name": "Dřep", "sets": 4, "reps": "5-8" }, { "name": "Rumunský mrtvý tah", "sets": 3, "reps": "8-10" } ] },
-  { "name": "Pátek", "title": "Celé tělo", "exercises": [ { "name": "Mrtvý tah", "sets": 3, "reps": "5" } ] },
-  { "name": "Sobota", "title": "Volno", "exercises": [] },
-  { "name": "Neděle", "title": "Volno", "exercises": [] }
- ] },
- "metrics": [ "Tělesná váha (kg)" ],
- "checks": [ "Protein", "8 h spánku" ],
+ "plan": {
+  "days": [
+   {
+    "name": "Pondělí",
+    "title": "Upper body A",
+    "note": "Posilovna. Konči s rezervou 1–2 opakování, ne do selhání. Pauzy 1,5–2 min. Zvládneš všechna opakování čistě? Příště přidej váhu nebo opakování.",
+    "exercises": [
+     {
+      "name": "Dumbbell Bench Press",
+      "sets": 3,
+      "reps": "8-10"
+     },
+     {
+      "name": "Lat Pulldown",
+      "sets": 3,
+      "reps": "8-10"
+     },
+     {
+      "name": "Dumbbell Shoulder Press",
+      "sets": 3,
+      "reps": "8-10"
+     },
+     {
+      "name": "Seated Cable Row",
+      "sets": 3,
+      "reps": "8-10"
+     },
+     {
+      "name": "Dumbbell Biceps Curl",
+      "sets": 2,
+      "reps": "12"
+     },
+     {
+      "name": "Triceps Pushdown",
+      "sets": 2,
+      "reps": "12"
+     }
+    ]
+   },
+   {
+    "name": "Úterý",
+    "title": "Lower body A",
+    "note": "Posilovna. Konči s rezervou 1–2 opakování, ne do selhání. Pauzy 1,5–2 min. Zvládneš všechna opakování čistě? Příště přidej váhu nebo opakování.",
+    "exercises": [
+     {
+      "name": "Goblet Squat / Smith Machine Squat",
+      "sets": 3,
+      "reps": "8-10"
+     },
+     {
+      "name": "Romanian Deadlift",
+      "sets": 3,
+      "reps": "10"
+     },
+     {
+      "name": "Lying Leg Curl",
+      "sets": 3,
+      "reps": "12"
+     },
+     {
+      "name": "Standing Calf Raise",
+      "sets": 3,
+      "reps": "15"
+     },
+     {
+      "name": "Plank (čas v sekundách)",
+      "sets": 3,
+      "reps": "30-45 s",
+      "note": "do kg napiš 0, do opakování sekundy"
+     }
+    ]
+   },
+   {
+    "name": "Středa",
+    "title": "Volno",
+    "note": "Regenerace.",
+    "exercises": []
+   },
+   {
+    "name": "Čtvrtek",
+    "title": "Upper body B",
+    "note": "Posilovna. Konči s rezervou 1–2 opakování, ne do selhání. Pauzy 1,5–2 min. Zvládneš všechna opakování čistě? Příště přidej váhu nebo opakování.",
+    "exercises": [
+     {
+      "name": "Incline Dumbbell Press",
+      "sets": 3,
+      "reps": "10"
+     },
+     {
+      "name": "One-Arm Dumbbell Row",
+      "sets": 3,
+      "reps": "10"
+     },
+     {
+      "name": "Assisted Pull-Up (nebo Lat Pulldown)",
+      "sets": 3,
+      "reps": "8"
+     },
+     {
+      "name": "Dumbbell Lateral Raise",
+      "sets": 3,
+      "reps": "12-15"
+     },
+     {
+      "name": "Dumbbell Rear Delt Fly",
+      "sets": 2,
+      "reps": "15"
+     }
+    ]
+   },
+   {
+    "name": "Pátek",
+    "title": "Lower body B",
+    "note": "Posilovna. Konči s rezervou 1–2 opakování, ne do selhání. Pauzy 1,5–2 min. Zvládneš všechna opakování čistě? Příště přidej váhu nebo opakování.",
+    "exercises": [
+     {
+      "name": "Leg Press",
+      "sets": 3,
+      "reps": "10-12"
+     },
+     {
+      "name": "Hip Thrust",
+      "sets": 3,
+      "reps": "10"
+     },
+     {
+      "name": "Dumbbell Lunge",
+      "sets": 3,
+      "reps": "10 / noha"
+     },
+     {
+      "name": "Leg Extension",
+      "sets": 2,
+      "reps": "12"
+     },
+     {
+      "name": "Hanging Knee Raise / Crunch",
+      "sets": 3,
+      "reps": "12"
+     }
+    ]
+   },
+   {
+    "name": "Sobota",
+    "title": "Full body doma",
+    "note": "Kalistenika + jednoruční činka. Konči s rezervou 1–2 opakování, ne do selhání. Pauzy 1,5–2 min. Zvládneš všechna opakování čistě? Příště přidej váhu nebo opakování.",
+    "exercises": [
+     {
+      "name": "Push-Up",
+      "sets": 3,
+      "reps": "max s čistou technikou",
+      "note": "vlastní váha, kg 0"
+     },
+     {
+      "name": "Dumbbell Goblet Squat",
+      "sets": 3,
+      "reps": "12"
+     },
+     {
+      "name": "Single-Arm Dumbbell Row",
+      "sets": 3,
+      "reps": "10 / strana"
+     },
+     {
+      "name": "Dumbbell Overhead Press",
+      "sets": 3,
+      "reps": "10"
+     },
+     {
+      "name": "Glute Bridge",
+      "sets": 3,
+      "reps": "15"
+     },
+     {
+      "name": "Plank (čas v sekundách)",
+      "sets": 3,
+      "reps": "30-45 s",
+      "note": "do kg napiš 0, do opakování sekundy"
+     }
+    ]
+   },
+   {
+    "name": "Neděle",
+    "title": "Volno",
+    "note": "Volno nebo lehká chůze.",
+    "exercises": []
+   }
+  ]
+ },
+ "metrics": [
+  "Tělesná váha (kg, ráno nalačno)"
+ ],
+ "checks": [
+  "Bílkoviny 90–110 g",
+  "Spánek 7–9 h",
+  "Kalorie cca +300 kcal nad udržovací"
+ ],
  "records": [],
  "log": {}
 }

@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#111418">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Trénink</title>
+<style>
+:root { --bg:#111418; --card:#1b2027; --line:#2a313b; --text:#e9edf2; --mute:#8b96a5; --acc:#ff7a1a; --ok:#3ecf8e; --gold:#ffd166; }
+* { box-sizing:border-box; }
+body { margin:0; background:var(--bg); color:var(--text); font:16px/1.4 -apple-system,system-ui,sans-serif; padding:0 0 84px; }
+header { position:sticky; top:0; z-index:5; background:var(--bg); padding:calc(env(safe-area-inset-top) + 10px) 16px 10px; border-bottom:1px solid var(--line); }
+.top { display:flex; align-items:center; justify-content:space-between; gap:8px; }
+.lvl { font-weight:700; } .lvl small { color:var(--mute); font-weight:400; }
+.bar { height:8px; background:var(--line); border-radius:4px; overflow:hidden; margin-top:6px; }
+.bar i { display:block; height:100%; background:linear-gradient(90deg,var(--acc),var(--gold)); }
+.streak { font-weight:700; color:var(--gold); white-space:nowrap; }
+#sync { font-size:12px; color:var(--mute); }
+main { padding:12px 16px; max-width:640px; margin:0 auto; }
+.card { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:14px; margin-bottom:12px; }
+h2 { margin:0 0 8px; font-size:20px; } h3 { margin:0 0 8px; font-size:17px; }
+.mute { color:var(--mute); font-size:14px; }
+.row { display:flex; gap:8px; align-items:center; margin:6px 0; }
+.row span.n { width:22px; color:var(--mute); font-size:14px; }
+input, textarea, select { background:var(--bg); color:var(--text); border:1px solid var(--line); border-radius:10px; padding:10px; font-size:16px; width:100%; }
+input[type=number] { width:84px; text-align:center; }
+input[type=checkbox] { width:26px; height:26px; accent-color:var(--ok); }
+textarea { font-family:ui-monospace,monospace; font-size:13px; min-height:280px; }
+button { background:var(--line); color:var(--text); border:0; border-radius:10px; padding:10px 14px; font-size:16px; }
+button.main { background:var(--acc); color:#111; font-weight:700; width:100%; padding:14px; }
+button.small { padding:6px 10px; font-size:14px; }
+.pr { color:var(--gold); font-weight:700; font-size:13px; }
+.done { border-color:var(--ok); }
+nav { position:fixed; bottom:0; left:0; right:0; display:flex; background:var(--card); border-top:1px solid var(--line); padding-bottom:env(safe-area-inset-bottom); }
+nav button { flex:1; background:none; border-radius:0; padding:12px 0; font-size:13px; color:var(--mute); }
+nav button.on { color:var(--acc); }
+nav b { display:block; font-size:20px; }
+table { width:100%; border-collapse:collapse; font-size:15px; }
+td, th { text-align:left; padding:8px 4px; border-bottom:1px solid var(--line); }
+th { color:var(--mute); font-weight:400; font-size:13px; }
+.badges { display:grid; grid-template-columns:repeat(auto-fill,minmax(130px,1fr)); gap:8px; }
+.badge { text-align:center; padding:10px; border-radius:12px; background:var(--bg); border:1px solid var(--line); opacity:.35; }
+.badge.got { opacity:1; border-color:var(--gold); }
+.badge b { display:block; font-size:28px; }
+.stats { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+.stats div { background:var(--bg); border-radius:10px; padding:10px; } .stats b { display:block; font-size:22px; }
+#toast { position:fixed; left:50%; bottom:100px; transform:translateX(-50%); background:var(--gold); color:#111; font-weight:700; padding:12px 18px; border-radius:12px; display:none; z-index:9; text-align:center; }
+.hide { display:none; }
+</style>
+</head>
+<body>
+<header>
+  <div class="top">
+    <div class="lvl" id="lvl"></div>
+    <div class="streak" id="streak"></div>
+  </div>
+  <div class="bar"><i id="xpbar"></i></div>
+  <div id="sync"></div>
+</header>
+<main id="view"></main>
+<div id="toast"></div>
+<nav>
+  <button data-tab="today" class="on"><b>🏋️</b>Dnes</button>
+  <button data-tab="history"><b>📅</b>Historie</button>
+  <button data-tab="records"><b>🏆</b>Rekordy</button>
+  <button data-tab="profile"><b>⭐</b>Profil</button>
+  <button data-tab="settings"><b>⚙️</b>Nastavení</button>
+</nav>
+<script>
+// ---------- storage & sync ----------
+// Data žijí v data.json v repu. Telefon si drží kopii v localStorage (offline).
+// Se zadaným GitHub tokenem se změny zapisují zpět do data.json přes GitHub API.
+const LS = { data:'tr_data', token:'tr_token', repo:'tr_repo' };
+const ls = {
+  get(k) { try { return localStorage.getItem(k); } catch { return null; } },
+  set(k, v) { try { localStorage.setItem(k, v); } catch {} },
+};
+let D = null;          // celá data
+let sha = null;        // verze data.json na GitHubu
+let tab = 'today';
+let curDate = today();
+
+function today(d = new Date()) { return new Date(d - d.getTimezoneOffset() * 6e4).toISOString().slice(0, 10); }
+function repo() { return ls.get(LS.repo) || guessRepo(); }
+function guessRepo() { // johnny-137.github.io/trenink -> johnny-137/trenink
+  const h = location.hostname, p = location.pathname.split('/')[1];
+  return h.endsWith('github.io') ? h.split('.')[0] + '/' + p : '';
+}
+const b64enc = s => btoa(String.fromCharCode(...new TextEncoder().encode(s)));
+const b64dec = s => new TextDecoder().decode(Uint8Array.from(atob(s.replace(/\n/g, '')), c => c.charCodeAt(0)));
+
+async function ghGet() {
+  const t = ls.get(LS.token);
+  if (!t) { // bez tokenu jen čteme veřejný soubor
+    const r = await fetch('data.json?' + Date.now());
+    if (!r.ok) throw new Error('data.json ' + r.status);
+    return { data: await r.json(), sha: null };
+  }
+  const r = await fetch(`https://api.github.com/repos/${repo()}/contents/data.json?ref=main&t=${Date.now()}`,
+    { headers: { Authorization: 'Bearer ' + t, Accept: 'application/vnd.github+json' } });
+  if (!r.ok) throw new Error('GitHub ' + r.status);
+  const j = await r.json();
+  return { data: JSON.parse(b64dec(j.content)), sha: j.sha };
+}
+
+// Sloučení dvou verzí: plán/nastavení bere novější, záznamy dní se slučují podle data (novější úprava vyhrává).
+function merge(a, b) {
+  if (!a) return b; if (!b) return a;
+  const out = (a.updated || 0) >= (b.updated || 0) ? { ...a } : { ...b };
+  const log = { ...b.log };
+  for (const [d, e] of Object.entries(a.log || {})) if (!log[d] || (e.updated || 0) >= (log[d].updated || 0)) log[d] = e;
+  out.log = log;
+  out.updated = Math.max(a.updated || 0, b.updated || 0);
+  return out;
+}
+
+function setSync(msg) { document.getElementById('sync').textContent = msg; }
+
+async function pull() {
+  try {
+    const r = await ghGet();
+    D = merge(D, r.data); sha = r.sha;
+    ls.set(LS.data, JSON.stringify(D));
+    setSync(ls.get(LS.token) ? '☁️ synchronizováno' : '👀 jen čtení (zadej token v Nastavení)');
+    if (r.sha && JSON.stringify(D) !== JSON.stringify(r.data)) push(); // lokální změny navíc
+  } catch (e) { setSync('📴 offline, ukládám do telefonu (' + e.message + ')'); }
+  render();
+}
+
+let pushing = null, again = false;
+async function push() {
+  const t = ls.get(LS.token);
+  if (!t) return;
+  if (pushing) { again = true; return; }
+  pushing = (async () => {
+    try {
+      const r = await ghGet(); // vždy nejnovější verze, ať nepřepíšeme druhý telefon
+      D = merge(D, r.data);
+      const res = await fetch(`https://api.github.com/repos/${repo()}/contents/data.json`, {
+        method: 'PUT',
+        headers: { Authorization: 'Bearer ' + t, Accept: 'application/vnd.github+json' },
+        body: JSON.stringify({ message: 'Trénink ' + today(), content: b64enc(JSON.stringify(D, null, 1)), sha: r.sha, branch: 'main' }),
+      });
+      if (!res.ok) throw new Error('GitHub ' + res.status);
+      sha = (await res.json()).content.sha;
+      ls.set(LS.data, JSON.stringify(D));
+      setSync('☁️ uloženo ' + new Date().toLocaleTimeString('cs'));
+    } catch (e) { setSync('📴 neuloženo na GitHub, zkusím znovu (' + e.message + ')'); }
+    pushing = null;
+    if (again) { again = false; push(); }
+  })();
+}
+
+let saveTimer;
+function save(entryDate) {
+  const now = Date.now();
+  D.updated = now;
+  if (entryDate && D.log[entryDate]) D.log[entryDate].updated = now;
+  ls.set(LS.data, JSON.stringify(D));
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(push, 1500); // ponytail: debounce 1,5 s, ať každé ťuknutí není commit
+}
+window.addEventListener('online', push);
+
+// ---------- výpočty ----------
+const e1rm = (w, r) => r > 0 ? Math.round(w * (1 + r / 30)) : 0; // Epley odhad maxima
+const dayPlan = date => {
+  const wd = (new Date(date + 'T12:00').getDay() + 6) % 7; // 0 = pondělí
+  return D.plan.days[wd] || { title: 'Volno', exercises: [] };
+};
+const entries = () => Object.entries(D.log).sort(([a], [b]) => a < b ? -1 : 1);
+
+function records() {
+  const rec = {}; // cvik -> {w, r, date, e1rm}
+  const put = (ex, w, r, date) => {
+    if (!w) return;
+    const x = rec[ex];
+    if (!x || w > x.w || (w === x.w && r > x.r)) rec[ex] = { ...(x || {}), w, r, date, best1rm: Math.max(x?.best1rm || 0, e1rm(w, r)) };
+    else x.best1rm = Math.max(x.best1rm, e1rm(w, r));
+  };
+  for (const r of D.records || []) put(r.exercise, +r.weight, +r.reps || 1, r.date || 'dřív');
+  for (const [date, e] of entries()) for (const [ex, sets] of Object.entries(e.sets || {}))
+    for (const s of sets) if (s.done) put(ex, +s.w, +s.r, date);
+  return rec;
+}
+
+// Gamifikace se vždy přepočítá z historie, takže nejde rozbít ani podvést editací.
+function game() {
+  let xp = 0, prs = 0, workouts = 0, volume = 0, sets = 0;
+  const best = {};
+  for (const r of D.records || []) best[r.exercise] = Math.max(best[r.exercise] || 0, +r.weight);
+  for (const [, e] of entries()) {
+    let s = 0;
+    for (const [ex, list] of Object.entries(e.sets || {})) for (const x of list) if (x.done) {
+      s++; volume += (+x.w || 0) * (+x.r || 0); xp += 5;
+      if (+x.w > (best[ex] || 0)) { if (best[ex] !== undefined) { prs++; xp += 50; } best[ex] = +x.w; }
+    }
+    sets += s;
+    if (e.finished) { workouts++; xp += 100; }
+    xp += Object.values(e.checks || {}).filter(Boolean).length * 10;
+  }
+  // série: po sobě jdoucí dny, kdy byl trénink hotový nebo byl podle plánu volný den
+  let streak = 0;
+  const first = entries()[0]?.[0] || today();
+  for (let d = new Date(), i = 0; i < 3650; d.setDate(d.getDate() - 1), i++) {
+    const k = today(d), e = D.log[k], rest = !dayPlan(k).exercises.length;
+    if (e?.finished || rest) { if (!rest || e?.finished) streak++; }
+    else if (k !== today()) break; // dnešek ještě můžeš dohnat
+    if (k <= first) break;
+  }
+  xp += streak * 20;
+  const level = Math.floor(Math.sqrt(xp / 100)) + 1;
+  const from = (level - 1) ** 2 * 100, to = level ** 2 * 100;
+  return { xp, level, pct: (xp - from) / (to - from) * 100, to, prs, workouts, volume, sets, streak };
+}
+
+const TITLES = ['Nováček', 'Učeň', 'Pravidelný', 'Bojovník', 'Železný', 'Bestie', 'Titán', 'Legenda'];
+const BADGES = [
+  ['🎯', 'První trénink', g => g.workouts >= 1],
+  ['🔟', '10 tréninků', g => g.workouts >= 10],
+  ['💯', '100 tréninků', g => g.workouts >= 100],
+  ['🔥', '7 dní v řadě', g => g.streak >= 7],
+  ['☄️', '30 dní v řadě', g => g.streak >= 30],
+  ['🥇', 'První rekord', g => g.prs >= 1],
+  ['👑', '10 rekordů', g => g.prs >= 10],
+  ['🚚', '10 tun celkem', g => g.volume >= 10000],
+  ['🏗️', '100 tun celkem', g => g.volume >= 100000],
+  ['💪', '500 sérií', g => g.sets >= 500],
+  ['⭐', 'Level 5', g => g.level >= 5],
+  ['🌟', 'Level 10', g => g.level >= 10],
+];
+
+function toast(msg) {
+  const t = document.getElementById('toast');
+  t.innerHTML = msg; t.style.display = 'block';
+  clearTimeout(t._h); t._h = setTimeout(() => t.style.display = 'none', 2600);
+}
+
+// ---------- obrazovky ----------
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+function lastSets(ex, before) {
+  for (const [d, e] of entries().reverse()) if (d < before && e.sets?.[ex]?.length) return e.sets[ex];
+  return null;
+}
+
+function entry(date) {
+  if (!D.log[date]) {
+    const p = dayPlan(date), sets = {};
+    for (const ex of p.exercises) {
+      const prev = lastSets(ex.name, date);
+      sets[ex.name] = Array.from({ length: +ex.sets || 3 }, (_, i) => ({ w: prev?.[i]?.w ?? prev?.[0]?.w ?? ex.weight ?? '', r: '', done: false }));
+    }
+    D.log[date] = { sets, metrics: {}, checks: {}, note: '', finished: false, updated: 0 };
+  }
+  return D.log[date];
+}
+
+function vToday() {
+  const p = dayPlan(curDate), e = D.log[curDate] || (p.exercises.length ? entry(curDate) : null);
+  const rec = records();
+  let h = `<div class="card"><div class="row"><button class="small" onclick="shift(-1)">◀</button>
+    <input type="date" value="${curDate}" onchange="curDate=this.value;render()"><button class="small" onclick="shift(1)">▶</button></div>
+    <h2>${esc(p.name || '')} ${esc(p.title)}</h2>${p.note ? `<div class="mute">${esc(p.note)}</div>` : ''}</div>`;
+  if (!p.exercises.length && !e) h += `<div class="card"><h3>😴 Volný den</h3><div class="mute">Regenerace se taky počítá do série.</div>
+    <button onclick="entry(curDate);render()">Přesto zapsat trénink</button></div>`;
+  const ex = e ? Object.keys(e.sets) : [];
+  for (const name of ex) {
+    const info = p.exercises.find(x => x.name === name) || {}, r = rec[name];
+    h += `<div class="card"><h3>${esc(name)}</h3><div class="mute">${info.sets ? `${info.sets}× ${esc(info.reps)}` : ''}${info.note ? ' · ' + esc(info.note) : ''}${r ? ` · 🏆 ${r.w} kg × ${r.r}` : ''}</div>`;
+    e.sets[name].forEach((s, i) => {
+      const isPr = s.done && r && +s.w >= r.w && r.date === curDate;
+      h += `<div class="row"><span class="n">${i + 1}.</span>
+        <input type="number" inputmode="decimal" step="0.5" placeholder="kg" value="${esc(s.w)}" onchange="setSet('${esc(name)}',${i},'w',this.value)">
+        <span class="mute">×</span>
+        <input type="number" inputmode="numeric" placeholder="${esc(info.reps || 'op.')}" value="${esc(s.r)}" onchange="setSet('${esc(name)}',${i},'r',this.value)">
+        <input type="checkbox" ${s.done ? 'checked' : ''} onchange="setSet('${esc(name)}',${i},'done',this.checked)">
+        ${isPr ? '<span class="pr">PR!</span>' : ''}</div>`;
+    });
+    h += `<button class="small" onclick="addSet('${esc(name)}')">+ série</button></div>`;
+  }
+  if (e) {
+    h += `<div class="card"><button class="small" onclick="addEx()">+ přidat cvik</button></div>`;
+    if ((D.checks || []).length) h += `<div class="card"><h3>Denní úkoly</h3>${D.checks.map(c => `<label class="row">
+      <input type="checkbox" ${e.checks[c] ? 'checked' : ''} onchange="setCheck('${esc(c)}',this.checked)"> ${esc(c)}</label>`).join('')}</div>`;
+    if ((D.metrics || []).length) h += `<div class="card"><h3>Měření</h3>${D.metrics.map(m => `<div class="row"><span style="flex:1">${esc(m)}</span>
+      <input type="number" inputmode="decimal" step="any" value="${esc(e.metrics[m])}" onchange="setMetric('${esc(m)}',this.value)"></div>`).join('')}</div>`;
+    h += `<div class="card"><h3>Poznámka</h3><textarea style="min-height:70px" onchange="D.log[curDate].note=this.value;save(curDate)">${esc(e.note)}</textarea></div>`;
+    h += e.finished ? `<div class="card done"><h3>✅ Trénink hotový</h3><button class="small" onclick="finish(false)">Vrátit</button></div>`
+      : `<button class="main" onclick="finish(true)">Dokončit trénink (+100 XP)</button>`;
+  } else {
+    // volný den bez tréninku: pořád jde zapsat měření a úkoly
+    if ((D.checks || []).length || (D.metrics || []).length) h += `<div class="card"><button onclick="entry(curDate);render()">Zapsat měření / úkoly</button></div>`;
+  }
+  return h;
+}
+
+function shift(n) { const d = new Date(curDate + 'T12:00'); d.setDate(d.getDate() + n); curDate = today(d); render(); }
+function before() { return { g: game(), r: records() }; }
+function after(b) {
+  const g = game(), r = records();
+  for (const [ex, x] of Object.entries(r)) if (b.r[ex] && x.w > b.r[ex].w) toast(`🏆 NOVÝ REKORD!<br>${esc(ex)} ${x.w} kg`);
+  if (g.level > b.g.level) toast(`⭐ LEVEL ${g.level}!<br>${TITLES[Math.min(g.level - 1, TITLES.length - 1)]}`);
+  for (const [i, n, f] of BADGES) if (f(g) && !f(b.g)) toast(`${i} Odznak: ${n}`);
+}
+function setSet(ex, i, k, v) {
+  const b = before(), s = D.log[curDate].sets[ex][i];
+  s[k] = v;
+  if (k === 'done' && v && !s.r) s.r = String(parseInt(dayPlan(curDate).exercises.find(x => x.name === ex)?.reps) || '');
+  save(curDate); after(b); render();
+}
+function addSet(ex) { const l = D.log[curDate].sets[ex], p = l[l.length - 1]; l.push({ w: p?.w ?? '', r: '', done: false }); save(curDate); render(); }
+function addEx() { const n = prompt('Název cviku'); if (n) { D.log[curDate].sets[n] = [{ w: lastSets(n, curDate)?.[0]?.w ?? '', r: '', done: false }]; save(curDate); render(); } }
+function setCheck(c, v) { const b = before(); D.log[curDate].checks[c] = v; save(curDate); after(b); render(); }
+function setMetric(m, v) { D.log[curDate].metrics[m] = v === '' ? '' : +v; save(curDate); }
+function finish(v) {
+  const b = before(); D.log[curDate].finished = v; save(curDate);
+  if (v) toast('💪 Trénink hotový! +100 XP'); after(b); render();
+}
+
+function vHistory() {
+  const list = entries().reverse();
+  if (!list.length) return `<div class="card">Zatím žádný záznam.</div>`;
+  return list.map(([d, e]) => {
+    const done = Object.entries(e.sets || {}).map(([ex, s]) => [ex, s.filter(x => x.done)]).filter(([, s]) => s.length);
+    const m = Object.entries(e.metrics || {}).filter(([, v]) => v !== '');
+    return `<div class="card ${e.finished ? 'done' : ''}" onclick="curDate='${d}';go('today')">
+      <h3>${e.finished ? '✅' : '◻️'} ${new Date(d + 'T12:00').toLocaleDateString('cs', { weekday: 'short', day: 'numeric', month: 'numeric', year: 'numeric' })} · ${esc(dayPlan(d).title)}</h3>
+      ${done.map(([ex, s]) => `<div class="mute">${esc(ex)}: ${s.map(x => `${x.w}×${x.r}`).join(', ')}</div>`).join('')}
+      ${m.length ? `<div class="mute">📏 ${m.map(([k, v]) => `${esc(k)}: ${v}`).join(' · ')}</div>` : ''}
+      ${e.note ? `<div class="mute">📝 ${esc(e.note)}</div>` : ''}</div>`;
+  }).join('');
+}
+
+function vRecords() {
+  const r = Object.entries(records()).sort(([a], [b]) => a.localeCompare(b, 'cs'));
+  let h = `<div class="card"><h2>🏆 Osobní rekordy</h2><table><tr><th>Cvik</th><th>Nejvíc</th><th>Odhad 1RM</th><th>Kdy</th></tr>
+    ${r.map(([ex, x]) => `<tr><td>${esc(ex)}</td><td><b>${x.w} kg</b> × ${x.r}</td><td>${x.best1rm} kg</td><td class="mute">${esc(x.date)}</td></tr>`).join('')}</table></div>`;
+  // vývoj měření (třeba tělesná váha)
+  for (const m of D.metrics || []) {
+    const pts = entries().filter(([, e]) => e.metrics?.[m] !== undefined && e.metrics[m] !== '').map(([d, e]) => [d, +e.metrics[m]]);
+    if (pts.length < 2) continue;
+    const vs = pts.map(p => p[1]), lo = Math.min(...vs), hi = Math.max(...vs) || 1;
+    const path = pts.map((p, i) => `${(i / (pts.length - 1) * 300).toFixed(1)},${(70 - (p[1] - lo) / ((hi - lo) || 1) * 60).toFixed(1)}`).join(' ');
+    h += `<div class="card"><h3>${esc(m)}</h3><div class="mute">${pts[0][1]} → <b>${pts[pts.length - 1][1]}</b> (min ${lo}, max ${hi})</div>
+      <svg viewBox="0 0 300 80" width="100%" height="80"><polyline points="${path}" fill="none" stroke="var(--acc)" stroke-width="2"/></svg></div>`;
+  }
+  return h;
+}
+
+function vProfile() {
+  const g = game();
+  return `<div class="card"><h2>⭐ Level ${g.level} · ${TITLES[Math.min(g.level - 1, TITLES.length - 1)]}</h2>
+    <div class="mute">${g.xp} XP · další level při ${g.to} XP</div><div class="bar"><i style="width:${g.pct}%"></i></div></div>
+    <div class="card stats">
+      <div><b>${g.workouts}</b>tréninků</div><div><b>🔥 ${g.streak}</b>dní v řadě</div>
+      <div><b>${g.prs}</b>překonaných rekordů</div><div><b>${(g.volume / 1000).toFixed(1)} t</b>zvednuto celkem</div>
+      <div><b>${g.sets}</b>sérií</div><div><b>${Object.keys(records()).length}</b>cviků s rekordem</div></div>
+    <div class="card"><h3>Odznaky</h3><div class="badges">${BADGES.map(([i, n, f]) => `<div class="badge ${f(g) ? 'got' : ''}"><b>${i}</b>${n}</div>`).join('')}</div></div>
+    <div class="card mute">XP: 5 za sérii · 100 za dokončený trénink · 50 za nový rekord · 10 za splněný denní úkol · 20 za každý den série</div>`;
+}
+
+function vSettings() {
+  const t = ls.get(LS.token);
+  return `<div class="card"><h3>☁️ Synchronizace mezi telefony</h3>
+    <div class="mute">Repo (vlastník/název)</div><input id="srepo" value="${esc(repo())}">
+    <div class="mute" style="margin-top:8px">GitHub token ${t ? '(uložený ✓)' : ''}</div>
+    <input id="stok" type="password" placeholder="${t ? '••••••• (nech prázdné = beze změny)' : 'github_pat_…'}">
+    <div class="row" style="margin-top:10px"><button onclick="saveSync()">Uložit a synchronizovat</button><button onclick="ls.set(LS.token,'');pull()">Odhlásit</button></div>
+    <div class="mute">Token se ukládá jen v tomhle telefonu.</div></div>
+    <div class="card"><h3>📋 Plán, měření a rekordy (JSON)</h3>
+    <div class="mute">plan.days = pondělí až neděle · metrics = co měříš · checks = denní úkoly · records = staré rekordy</div>
+    <textarea id="sjson">${esc(JSON.stringify({ plan: D.plan, metrics: D.metrics, checks: D.checks, records: D.records }, null, 2))}</textarea>
+    <button class="main" onclick="saveJson()">Uložit plán</button></div>
+    <div class="card"><button onclick="exportData()">⬇️ Stáhnout zálohu všech dat</button></div>`;
+}
+function saveSync() {
+  ls.set(LS.repo, document.getElementById('srepo').value.trim());
+  const t = document.getElementById('stok').value.trim(); if (t) ls.set(LS.token, t);
+  pull();
+}
+function saveJson() {
+  try { Object.assign(D, JSON.parse(document.getElementById('sjson').value)); save(); toast('✅ Plán uložen'); render(); }
+  catch (e) { alert('Chyba v JSON: ' + e.message); }
+}
+function exportData() {
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([JSON.stringify(D, null, 1)], { type: 'application/json' }));
+  a.download = 'trenink-' + today() + '.json'; a.click();
+}
+
+const VIEWS = { today: vToday, history: vHistory, records: vRecords, profile: vProfile, settings: vSettings };
+function go(t) { tab = t; document.querySelectorAll('nav button').forEach(b => b.classList.toggle('on', b.dataset.tab === t)); render(); scrollTo(0, 0); }
+document.querySelectorAll('nav button').forEach(b => b.onclick = () => go(b.dataset.tab));
+
+function render() {
+  if (!D) return;
+  const g = game();
+  document.getElementById('lvl').innerHTML = `Lvl ${g.level} <small>${TITLES[Math.min(g.level - 1, TITLES.length - 1)]} · ${g.xp} XP</small>`;
+  document.getElementById('streak').textContent = '🔥 ' + g.streak;
+  document.getElementById('xpbar').style.width = g.pct + '%';
+  document.getElementById('view').innerHTML = VIEWS[tab]();
+}
+
+try { D = JSON.parse(ls.get(LS.data)); } catch {}
+render();
+pull();
+</script>
+</body>
+</html>

@@ -1,5 +1,5 @@
 {
- "updated": 1792688138288,
+ "updated": 1792689038132,
  "plan": {
   "days": [
    {
@@ -271,22 +271,24 @@
     ],
     "Dumbbell Rear Delt Fly": [
      {
-      "w": "",
-      "r": "",
+      "w": "2.5",
+      "r": "5",
       "done": false
      },
      {
-      "w": "",
-      "r": "",
+      "w": "2.5",
+      "r": "3",
       "done": false
      }
     ]
    },
    "metrics": {},
-   "checks": {},
+   "checks": {
+    "Spánek 7–9 h": true
+   },
    "note": "",
-   "finished": false,
-   "updated": 1792688138288
+   "finished": true,
+   "updated": 1792689038132
   }
  }
 }

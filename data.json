@@ -1,5 +1,5 @@
 {
- "updated": 1792685977240,
+ "updated": 1792685982257,
  "plan": {
   "days": [
    {
@@ -265,8 +265,8 @@
      },
      {
       "w": "7",
-      "r": "",
-      "done": false
+      "r": "13",
+      "done": true
      }
     ],
     "Dumbbell Rear Delt Fly": [
@@ -286,7 +286,7 @@
    "checks": {},
    "note": "",
    "finished": false,
-   "updated": 1792685977240
+   "updated": 1792685982257
   }
  }
 }

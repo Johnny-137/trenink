@@ -1,5 +1,5 @@
 {
- "updated": 1792686920077,
+ "updated": 1792687197147,
  "plan": {
   "days": [
    {
@@ -238,7 +238,7 @@
     "Assisted Pull-Up (nebo Lat Pulldown)": [
      {
       "w": "",
-      "r": "",
+      "r": "7",
       "done": false
      },
      {
@@ -286,7 +286,7 @@
    "checks": {},
    "note": "",
    "finished": false,
-   "updated": 1792686920077
+   "updated": 1792687197147
   }
  }
 }

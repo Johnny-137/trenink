@@ -1,5 +1,5 @@
 {
- "updated": 1792686386925,
+ "updated": 1792686390921,
  "plan": {
   "days": [
    {
@@ -221,7 +221,7 @@
     "Single-Arm Cable Row": [
      {
       "w": "10",
-      "r": "",
+      "r": "12",
       "done": false
      },
      {
@@ -286,7 +286,7 @@
    "checks": {},
    "note": "",
    "finished": false,
-   "updated": 1792686386925
+   "updated": 1792686390921
   }
  }
 }

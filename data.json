@@ -291,6 +291,95 @@
    "note": "",
    "finished": true,
    "updated": 1792689038132
+  },
+  "2026-10-23": {
+   "sets": {
+    "Leg Press": [
+     {
+      "w": "",
+      "r": "",
+      "done": false
+     },
+     {
+      "w": "",
+      "r": "",
+      "done": false
+     },
+     {
+      "w": "",
+      "r": "",
+      "done": false
+     }
+    ],
+    "Hip Thrust": [
+     {
+      "w": "",
+      "r": "",
+      "done": false
+     },
+     {
+      "w": "",
+      "r": "",
+      "done": false
+     },
+     {
+      "w": "",
+      "r": "",
+      "done": false
+     }
+    ],
+    "Dumbbell Lunge": [
+     {
+      "w": "",
+      "r": "",
+      "done": false
+     },
+     {
+      "w": "",
+      "r": "",
+      "done": false
+     },
+     {
+      "w": "",
+      "r": "",
+      "done": false
+     }
+    ],
+    "Leg Extension": [
+     {
+      "w": "",
+      "r": "",
+      "done": false
+     },
+     {
+      "w": "",
+      "r": "",
+      "done": false
+     }
+    ],
+    "Hanging Knee Raise / Crunch": [
+     {
+      "w": "",
+      "r": "",
+      "done": false
+     },
+     {
+      "w": "",
+      "r": "",
+      "done": false
+     },
+     {
+      "w": "",
+      "r": "",
+      "done": false
+     }
+    ]
+   },
+   "metrics": {},
+   "checks": {},
+   "note": "",
+   "finished": false,
+   "updated": 0
   }
  }
 }

@@ -1,5 +1,5 @@
 {
- "updated": 1792780537604,
+ "updated": 1792780541659,
  "plan": {
   "days": [
    {
@@ -372,7 +372,7 @@
     ],
     "Single-Leg Romanian Deadlift": [
      {
-      "w": "",
+      "w": "7",
       "r": "5",
       "done": false
      },
@@ -445,7 +445,7 @@
    },
    "note": "",
    "finished": false,
-   "updated": 1792780537604,
+   "updated": 1792780541659,
    "home": true
   }
  }

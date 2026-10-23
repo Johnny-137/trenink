@@ -1,5 +1,5 @@
 {
- "updated": 1792780276555,
+ "updated": 1792780367801,
  "plan": {
   "days": [
    {
@@ -356,7 +356,7 @@
     "Bulgarian Split Squat": [
      {
       "w": "",
-      "r": "",
+      "r": "4",
       "done": false
      },
      {
@@ -445,7 +445,7 @@
    },
    "note": "",
    "finished": false,
-   "updated": 1792780276555,
+   "updated": 1792780367801,
    "home": true
   }
  }

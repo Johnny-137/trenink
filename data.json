@@ -1,5 +1,5 @@
 {
- "updated": 1792780755726,
+ "updated": 1792780764267,
  "plan": {
   "days": [
    {
@@ -336,58 +336,7 @@
   },
   "2026-10-23": {
    "sets": {
-    "Dumbbell Hip Thrust": [
-     {
-      "w": "7",
-      "r": "12",
-      "done": false
-     },
-     {
-      "w": "",
-      "r": "",
-      "done": false
-     },
-     {
-      "w": "",
-      "r": "",
-      "done": false
-     }
-    ],
-    "Bulgarian Split Squat": [
-     {
-      "w": "7",
-      "r": "4",
-      "done": false
-     },
-     {
-      "w": "",
-      "r": "",
-      "done": false
-     },
-     {
-      "w": "",
-      "r": "",
-      "done": false
-     }
-    ],
-    "Single-Leg Romanian Deadlift": [
-     {
-      "w": "7",
-      "r": "5",
-      "done": false
-     },
-     {
-      "w": "",
-      "r": "",
-      "done": false
-     },
-     {
-      "w": "",
-      "r": "",
-      "done": false
-     }
-    ],
-    "Step-Up": [
+    "Leg Press": [
      {
       "w": "",
       "r": "",
@@ -404,7 +353,7 @@
       "done": false
      }
     ],
-    "Single-Leg Calf Raise": [
+    "Hip Thrust": [
      {
       "w": "",
       "r": "",
@@ -421,10 +370,39 @@
       "done": false
      }
     ],
-    "Lying Leg Raise": [
+    "Dumbbell Lunge": [
      {
       "w": "",
-      "r": "30",
+      "r": "",
+      "done": false
+     },
+     {
+      "w": "",
+      "r": "",
+      "done": false
+     },
+     {
+      "w": "",
+      "r": "",
+      "done": false
+     }
+    ],
+    "Leg Extension": [
+     {
+      "w": "",
+      "r": "",
+      "done": false
+     },
+     {
+      "w": "",
+      "r": "",
+      "done": false
+     }
+    ],
+    "Hanging Knee Raise / Crunch": [
+     {
+      "w": "",
+      "r": "",
       "done": false
      },
      {
@@ -445,8 +423,8 @@
    },
    "note": "",
    "finished": false,
-   "updated": 1792780755726,
-   "home": true
+   "updated": 1792780764267,
+   "home": false
   }
  }
 }

@@ -1,5 +1,5 @@
 {
- "updated": 1792780818924,
+ "updated": 1792780823148,
  "plan": {
   "days": [
    {
@@ -338,7 +338,7 @@
    "sets": {
     "Dumbbell Hip Thrust": [
      {
-      "w": "",
+      "w": "7",
       "r": "10",
       "done": false
      },
@@ -445,7 +445,7 @@
    },
    "note": "",
    "finished": false,
-   "updated": 1792780818924,
+   "updated": 1792780823148,
    "home": true
   },
   "2026-10-24": {

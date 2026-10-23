@@ -1,5 +1,5 @@
 {
- "updated": 1792780772120,
+ "updated": 1792780818924,
  "plan": {
   "days": [
    {
@@ -339,7 +339,7 @@
     "Dumbbell Hip Thrust": [
      {
       "w": "",
-      "r": "",
+      "r": "10",
       "done": false
      },
      {
@@ -445,8 +445,119 @@
    },
    "note": "",
    "finished": false,
-   "updated": 1792780772120,
+   "updated": 1792780818924,
    "home": true
+  },
+  "2026-10-24": {
+   "sets": {
+    "Push-Up": [
+     {
+      "w": "",
+      "r": "",
+      "done": false
+     },
+     {
+      "w": "",
+      "r": "",
+      "done": false
+     },
+     {
+      "w": "",
+      "r": "",
+      "done": false
+     }
+    ],
+    "Dumbbell Goblet Squat": [
+     {
+      "w": "",
+      "r": "",
+      "done": false
+     },
+     {
+      "w": "",
+      "r": "",
+      "done": false
+     },
+     {
+      "w": "",
+      "r": "",
+      "done": false
+     }
+    ],
+    "Single-Arm Dumbbell Row": [
+     {
+      "w": "",
+      "r": "",
+      "done": false
+     },
+     {
+      "w": "",
+      "r": "",
+      "done": false
+     },
+     {
+      "w": "",
+      "r": "",
+      "done": false
+     }
+    ],
+    "Dumbbell Overhead Press": [
+     {
+      "w": "",
+      "r": "",
+      "done": false
+     },
+     {
+      "w": "",
+      "r": "",
+      "done": false
+     },
+     {
+      "w": "",
+      "r": "",
+      "done": false
+     }
+    ],
+    "Glute Bridge": [
+     {
+      "w": "",
+      "r": "",
+      "done": false
+     },
+     {
+      "w": "",
+      "r": "",
+      "done": false
+     },
+     {
+      "w": "",
+      "r": "",
+      "done": false
+     }
+    ],
+    "Plank (čas v sekundách)": [
+     {
+      "w": "",
+      "r": "",
+      "done": false
+     },
+     {
+      "w": "",
+      "r": "",
+      "done": false
+     },
+     {
+      "w": "",
+      "r": "",
+      "done": false
+     }
+    ]
+   },
+   "metrics": {},
+   "checks": {},
+   "note": "",
+   "finished": false,
+   "updated": 0
   }
  }
 }

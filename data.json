@@ -1,5 +1,5 @@
 {
- "updated": 1792690353177,
+ "updated": 1792768721846,
  "plan": {
   "days": [
    {
@@ -142,7 +142,49 @@
       "sets": 3,
       "reps": "12"
      }
-    ]
+    ],
+    "home": {
+     "title": "Lower body B doma",
+     "note": "Doma s jednoruční činkou. Konči s rezervou 1–2 opakování, pauzy 1,5–2 min.",
+     "exercises": [
+      {
+       "name": "Dumbbell Hip Thrust",
+       "sets": 3,
+       "reps": "12",
+       "note": "záda opřená o gauč nebo židli, činka na pánvi; lehká činka = Single-Leg Hip Thrust"
+      },
+      {
+       "name": "Bulgarian Split Squat",
+       "sets": 3,
+       "reps": "8-10",
+       "note": "na nohu, zadní noha na židli, činka v ruce"
+      },
+      {
+       "name": "Single-Leg Romanian Deadlift",
+       "sets": 3,
+       "reps": "10",
+       "note": "na nohu, s činkou, záda rovná, kolena lehce pokrčená"
+      },
+      {
+       "name": "Step-Up",
+       "sets": 3,
+       "reps": "10",
+       "note": "na nohu, stabilní židle nebo schod, s činkou nebo bez"
+      },
+      {
+       "name": "Single-Leg Calf Raise",
+       "sets": 3,
+       "reps": "15",
+       "note": "na nohu, na schodu, opři se rukou o zeď"
+      },
+      {
+       "name": "Lying Leg Raise",
+       "sets": 3,
+       "reps": "12",
+       "note": "místo visu na zvedání kolen"
+      }
+     ]
+    }
    },
    {
     "name": "Sobota",

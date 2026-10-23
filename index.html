@@ -30,6 +30,7 @@ input[type=checkbox] { width:26px; height:26px; accent-color:var(--ok); }
 textarea { font-family:ui-monospace,monospace; font-size:13px; min-height:280px; }
 button { background:var(--line); color:var(--text); border:0; border-radius:10px; padding:10px 14px; font-size:16px; }
 button.main { background:var(--acc); color:#111; font-weight:700; width:100%; padding:14px; }
+main button.on { background:var(--acc); color:#111; font-weight:700; }
 button.small { padding:6px 10px; font-size:14px; }
 .pr { color:var(--gold); font-weight:700; font-size:13px; }
 .done { border-color:var(--ok); }
@@ -168,7 +169,8 @@ window.addEventListener('online', push);
 const e1rm = (w, r) => r > 0 ? Math.round(w * (1 + r / 30)) : 0; // Epley odhad maxima
 const dayPlan = date => {
   const wd = (new Date(date + 'T12:00').getDay() + 6) % 7; // 0 = pondělí
-  return D.plan.days[wd] || { title: 'Volno', exercises: [] };
+  const p = D.plan.days[wd] || { title: 'Volno', exercises: [] };
+  return D.log?.[date]?.home && p.home ? { ...p, ...p.home } : p; // domácí varianta dne
 };
 const entries = () => Object.entries(D.log).sort(([a], [b]) => a < b ? -1 : 1);
 
@@ -247,15 +249,24 @@ function lastSets(ex, before) {
 }
 
 function entry(date) {
-  if (!D.log[date]) {
-    const p = dayPlan(date), sets = {};
-    for (const ex of p.exercises) {
-      const prev = lastSets(ex.name, date);
-      sets[ex.name] = Array.from({ length: +ex.sets || 3 }, (_, i) => ({ w: prev?.[i]?.w ?? prev?.[0]?.w ?? ex.weight ?? '', r: '', done: false }));
-    }
-    D.log[date] = { sets, metrics: {}, checks: {}, note: '', finished: false, updated: 0 };
-  }
+  if (!D.log[date]) D.log[date] = { sets: planSets(date), metrics: {}, checks: {}, note: '', finished: false, updated: 0 };
   return D.log[date];
+}
+function planSets(date) {
+  const sets = {};
+  for (const ex of dayPlan(date).exercises) {
+    const prev = lastSets(ex.name, date);
+    sets[ex.name] = Array.from({ length: +ex.sets || 3 }, (_, i) => ({ w: prev?.[i]?.w ?? prev?.[0]?.w ?? ex.weight ?? '', r: '', done: false }));
+  }
+  return sets;
+}
+// přepnutí posilovna / doma: cviky s hotovou sérií zůstanou, zbytek se vymění
+function setHome(v) {
+  const e = entry(curDate);
+  e.home = v;
+  const keep = Object.fromEntries(Object.entries(e.sets).filter(([, s]) => s.some(x => x.done)));
+  e.sets = { ...planSets(curDate), ...keep };
+  save(curDate); render();
 }
 
 function vToday() {
@@ -263,7 +274,10 @@ function vToday() {
   const rec = records();
   let h = `<div class="card"><div class="row"><button class="small" onclick="shift(-1)">◀</button>
     <input type="date" value="${curDate}" onchange="curDate=this.value;render()"><button class="small" onclick="shift(1)">▶</button></div>
-    <h2>${esc(p.name || '')} ${esc(p.title)}</h2>${p.note ? `<div class="mute">${esc(p.note)}</div>` : ''}</div>`;
+    <h2>${esc(p.name || '')} ${esc(p.title)}</h2>${p.note ? `<div class="mute">${esc(p.note)}</div>` : ''}
+    ${D.plan.days[(new Date(curDate + 'T12:00').getDay() + 6) % 7]?.home ? `<div class="row" style="margin-top:8px">
+      <button style="flex:1" class="${e?.home ? '' : 'on'}" onclick="setHome(false)">🏋️ Posilovna</button>
+      <button style="flex:1" class="${e?.home ? 'on' : ''}" onclick="setHome(true)">🏠 Doma</button></div>` : ''}</div>`;
   if (!p.exercises.length && !e) h += `<div class="card"><h3>😴 Volný den</h3><div class="mute">Regenerace se taky počítá do série.</div>
     <button onclick="entry(curDate);render()">Přesto zapsat trénink</button></div>`;
   const ex = e ? Object.keys(e.sets) : [];

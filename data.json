@@ -1,5 +1,5 @@
 {
- "updated": 1792867143261,
+ "updated": 1792867148143,
  "plan": {
   "days": [
    {
@@ -470,7 +470,7 @@
     "Dumbbell Goblet Squat": [
      {
       "w": "",
-      "r": "",
+      "r": "16",
       "done": false
      },
      {
@@ -557,7 +557,7 @@
    "checks": {},
    "note": "",
    "finished": false,
-   "updated": 1792867143261
+   "updated": 1792867148143
   }
  }
 }

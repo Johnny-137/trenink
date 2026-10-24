@@ -1,5 +1,5 @@
 {
- "updated": 1792868820390,
+ "updated": 1792868851815,
  "plan": {
   "days": [
    {
@@ -559,9 +559,9 @@
    "checks": {
     "Spánek 7–9 h": true
    },
-   "note": "",
+   "note": "Vazeni bylo vecer na lacno ~2 hodiny po jidle",
    "finished": true,
-   "updated": 1792868820390
+   "updated": 1792868851815
   }
  }
 }

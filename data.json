@@ -1,5 +1,5 @@
 {
- "updated": 1792867133277,
+ "updated": 1792867143261,
  "plan": {
   "days": [
    {
@@ -504,7 +504,7 @@
     "Dumbbell Overhead Press": [
      {
       "w": "7",
-      "r": "16",
+      "r": "",
       "done": false
      },
      {
@@ -557,7 +557,7 @@
    "checks": {},
    "note": "",
    "finished": false,
-   "updated": 1792867133277
+   "updated": 1792867143261
   }
  }
 }

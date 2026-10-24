@@ -1,5 +1,5 @@
 {
- "updated": 1792866352111,
+ "updated": 1792866357029,
  "plan": {
   "days": [
    {
@@ -520,17 +520,17 @@
     ],
     "Glute Bridge": [
      {
-      "w": "-0.5",
+      "w": "0",
       "r": "30",
       "done": false
      },
      {
-      "w": "",
+      "w": "0",
       "r": "",
       "done": false
      },
      {
-      "w": "",
+      "w": "0",
       "r": "",
       "done": false
      }
@@ -557,7 +557,7 @@
    "checks": {},
    "note": "",
    "finished": false,
-   "updated": 1792866352111
+   "updated": 1792866357029
   }
  }
 }

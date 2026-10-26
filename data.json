@@ -1,5 +1,5 @@
 {
- "updated": 1793036347360,
+ "updated": 1793036350229,
  "plan": {
   "days": [
    {
@@ -647,7 +647,7 @@
     ],
     "Dumbbell Biceps Curl": [
      {
-      "w": "",
+      "w": "6",
       "r": "10",
       "done": false
      },
@@ -679,7 +679,7 @@
    },
    "note": "",
    "finished": false,
-   "updated": 1793036347360
+   "updated": 1793036350229
   }
  }
 }

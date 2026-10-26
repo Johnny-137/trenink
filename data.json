@@ -1,5 +1,5 @@
 {
- "updated": 1793000049479,
+ "updated": 1793028548495,
  "plan": {
   "days": [
    {
@@ -674,11 +674,12 @@
     "Tělesná váha (kg, ráno nalačno)": 59
    },
    "checks": {
-    "Spánek 7–9 h": true
+    "Spánek 7–9 h": true,
+    "Bílkoviny 90–110 g": true
    },
    "note": "",
    "finished": false,
-   "updated": 1793000049479
+   "updated": 1793028548495
   }
  }
 }

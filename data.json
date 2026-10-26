@@ -1,5 +1,5 @@
 {
- "updated": 1793037521382,
+ "updated": 1793037525912,
  "plan": {
   "days": [
    {
@@ -631,7 +631,7 @@
     "Seated Cable Row": [
      {
       "w": "12",
-      "r": "",
+      "r": "20",
       "done": false
      },
      {
@@ -684,7 +684,7 @@
    },
    "note": "",
    "finished": false,
-   "updated": 1793037521382
+   "updated": 1793037525912
   }
  }
 }

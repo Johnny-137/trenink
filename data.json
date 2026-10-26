@@ -1,5 +1,5 @@
 {
- "updated": 1793036641453,
+ "updated": 1793036844126,
  "plan": {
   "days": [
    {
@@ -659,7 +659,7 @@
     ],
     "Triceps Pushdown": [
      {
-      "w": "",
+      "w": "17.5",
       "r": "",
       "done": false
      },
@@ -679,7 +679,7 @@
    },
    "note": "",
    "finished": false,
-   "updated": 1793036641453
+   "updated": 1793036844126
   }
  }
 }

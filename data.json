@@ -1,5 +1,5 @@
 {
- "updated": 1793000042162,
+ "updated": 1793000049479,
  "plan": {
   "days": [
    {
@@ -670,13 +670,15 @@
      }
     ]
    },
-   "metrics": {},
+   "metrics": {
+    "Tělesná váha (kg, ráno nalačno)": 59
+   },
    "checks": {
     "Spánek 7–9 h": true
    },
    "note": "",
    "finished": false,
-   "updated": 1793000042162
+   "updated": 1793000049479
   }
  }
 }

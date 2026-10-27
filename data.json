@@ -1,5 +1,5 @@
 {
- "updated": 1793120563151,
+ "updated": 1793120576538,
  "plan": {
   "days": [
    {
@@ -691,7 +691,7 @@
     "Goblet Squat / Smith Machine Squat": [
      {
       "w": "40",
-      "r": "",
+      "r": "12",
       "done": false
      },
      {
@@ -778,7 +778,7 @@
    "checks": {},
    "note": "",
    "finished": false,
-   "updated": 1793120563151
+   "updated": 1793120576538
   }
  }
 }

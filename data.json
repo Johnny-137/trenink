@@ -1,5 +1,5 @@
 {
- "updated": 1793122167218,
+ "updated": 1793122350489,
  "plan": {
   "days": [
    {
@@ -759,7 +759,7 @@
     "Plank (čas v sekundách)": [
      {
       "w": "",
-      "r": "",
+      "r": "53",
       "done": false
      },
      {
@@ -778,7 +778,7 @@
    "checks": {},
    "note": "",
    "finished": false,
-   "updated": 1793122167218
+   "updated": 1793122350489
   }
  }
 }

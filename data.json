@@ -1,5 +1,5 @@
 {
- "updated": 1793121304755,
+ "updated": 1793121442911,
  "plan": {
   "days": [
    {
@@ -683,8 +683,8 @@
     "Bílkoviny 90–110 g": true
    },
    "note": "",
-   "finished": false,
-   "updated": 1793038302067
+   "finished": true,
+   "updated": 1793121442911
   },
   "2026-10-27": {
    "sets": {

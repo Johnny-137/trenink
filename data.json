@@ -781,6 +781,95 @@
    "note": "",
    "finished": true,
    "updated": 1793131098448
+  },
+  "2026-10-29": {
+   "sets": {
+    "Incline Dumbbell Press": [
+     {
+      "w": "7.5",
+      "r": "",
+      "done": false
+     },
+     {
+      "w": "7.5",
+      "r": "",
+      "done": false
+     },
+     {
+      "w": "7.5",
+      "r": "",
+      "done": false
+     }
+    ],
+    "Single-Arm Cable Row": [
+     {
+      "w": "10",
+      "r": "",
+      "done": false
+     },
+     {
+      "w": "15",
+      "r": "",
+      "done": false
+     },
+     {
+      "w": "20",
+      "r": "",
+      "done": false
+     }
+    ],
+    "Single-Arm Cable Pulldown": [
+     {
+      "w": "",
+      "r": "",
+      "done": false
+     },
+     {
+      "w": "",
+      "r": "",
+      "done": false
+     },
+     {
+      "w": "",
+      "r": "",
+      "done": false
+     }
+    ],
+    "Dumbbell Lateral Raise": [
+     {
+      "w": "6",
+      "r": "",
+      "done": false
+     },
+     {
+      "w": "7",
+      "r": "",
+      "done": false
+     },
+     {
+      "w": "7",
+      "r": "",
+      "done": false
+     }
+    ],
+    "Cable Reverse Fly": [
+     {
+      "w": "",
+      "r": "",
+      "done": false
+     },
+     {
+      "w": "",
+      "r": "",
+      "done": false
+     }
+    ]
+   },
+   "metrics": {},
+   "checks": {},
+   "note": "",
+   "finished": false,
+   "updated": 0
   }
  }
 }

@@ -1,5 +1,5 @@
 {
- "updated": 1793305461494,
+ "updated": 1793305487155,
  "plan": {
   "days": [
    {
@@ -868,8 +868,8 @@
    "metrics": {},
    "checks": {},
    "note": "",
-   "finished": false,
-   "updated": 0
+   "finished": true,
+   "updated": 1793305487155
   },
   "2026-10-28": {
    "sets": {},

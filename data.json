@@ -1,5 +1,5 @@
 {
- "updated": 1793393189381,
+ "updated": 1793393193324,
  "plan": {
   "days": [
    {
@@ -953,7 +953,7 @@
     ],
     "Single-Leg Calf Raise": [
      {
-      "w": "",
+      "w": "7.5",
       "r": "",
       "done": false
      },
@@ -990,7 +990,7 @@
    "checks": {},
    "note": "",
    "finished": false,
-   "updated": 1793393189381,
+   "updated": 1793393193324,
    "home": true
   }
  }

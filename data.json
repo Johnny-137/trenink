@@ -1,5 +1,5 @@
 {
- "updated": 1793393193324,
+ "updated": 1793393222080,
  "plan": {
   "days": [
    {
@@ -954,7 +954,7 @@
     "Single-Leg Calf Raise": [
      {
       "w": "7.5",
-      "r": "",
+      "r": "6",
       "done": false
      },
      {
@@ -987,10 +987,12 @@
     ]
    },
    "metrics": {},
-   "checks": {},
+   "checks": {
+    "Bílkoviny 90–110 g": true
+   },
    "note": "",
    "finished": false,
-   "updated": 1793393193324,
+   "updated": 1793393222080,
    "home": true
   }
  }

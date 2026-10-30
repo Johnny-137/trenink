@@ -1,5 +1,5 @@
 {
- "updated": 1793391436273,
+ "updated": 1793393143909,
  "plan": {
   "days": [
    {
@@ -971,7 +971,7 @@
     "Lying Leg Raise": [
      {
       "w": "0",
-      "r": "",
+      "r": "15",
       "done": false
      },
      {
@@ -990,7 +990,7 @@
    "checks": {},
    "note": "",
    "finished": false,
-   "updated": 1793391436273,
+   "updated": 1793393143909,
    "home": true
   }
  }

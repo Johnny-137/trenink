@@ -1,5 +1,5 @@
 {
- "updated": 1793522388264,
+ "updated": 1793558579879,
  "plan": {
   "days": [
    {
@@ -1107,6 +1107,16 @@
    "note": "",
    "finished": true,
    "updated": 1793522388264
+  },
+  "2026-11-01": {
+   "sets": {},
+   "metrics": {},
+   "checks": {
+    "Spánek 7–9 h": true
+   },
+   "note": "",
+   "finished": true,
+   "updated": 1793558579879
   }
  }
 }

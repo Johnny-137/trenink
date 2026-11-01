@@ -994,6 +994,117 @@
    "finished": true,
    "updated": 1793393223397,
    "home": true
+  },
+  "2026-10-31": {
+   "sets": {
+    "Push-Up": [
+     {
+      "w": "0",
+      "r": "",
+      "done": false
+     },
+     {
+      "w": "0",
+      "r": "",
+      "done": false
+     },
+     {
+      "w": "0",
+      "r": "",
+      "done": false
+     }
+    ],
+    "Dumbbell Goblet Squat": [
+     {
+      "w": "",
+      "r": "",
+      "done": false
+     },
+     {
+      "w": "",
+      "r": "",
+      "done": false
+     },
+     {
+      "w": "",
+      "r": "",
+      "done": false
+     }
+    ],
+    "Single-Arm Dumbbell Row": [
+     {
+      "w": "",
+      "r": "",
+      "done": false
+     },
+     {
+      "w": "",
+      "r": "",
+      "done": false
+     },
+     {
+      "w": "",
+      "r": "",
+      "done": false
+     }
+    ],
+    "Dumbbell Overhead Press": [
+     {
+      "w": "7",
+      "r": "",
+      "done": false
+     },
+     {
+      "w": "7",
+      "r": "",
+      "done": false
+     },
+     {
+      "w": "",
+      "r": "",
+      "done": false
+     }
+    ],
+    "Glute Bridge": [
+     {
+      "w": "0",
+      "r": "",
+      "done": false
+     },
+     {
+      "w": "0",
+      "r": "",
+      "done": false
+     },
+     {
+      "w": "0",
+      "r": "",
+      "done": false
+     }
+    ],
+    "Plank (čas v sekundách)": [
+     {
+      "w": "",
+      "r": "",
+      "done": false
+     },
+     {
+      "w": "",
+      "r": "",
+      "done": false
+     },
+     {
+      "w": "",
+      "r": "",
+      "done": false
+     }
+    ]
+   },
+   "metrics": {},
+   "checks": {},
+   "note": "",
+   "finished": false,
+   "updated": 0
   }
  }
 }

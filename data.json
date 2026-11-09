@@ -1,5 +1,5 @@
 {
- "updated": 1794240397834,
+ "updated": 1794240404478,
  "plan": {
   "days": [
    {
@@ -1278,7 +1278,7 @@
       "done": false
      },
      {
-      "w": "7.5",
+      "w": "2.5",
       "r": "",
       "done": false
      }
@@ -1329,7 +1329,7 @@
    "checks": {},
    "note": "",
    "finished": false,
-   "updated": 1794240397834
+   "updated": 1794240404478
   }
  }
 }

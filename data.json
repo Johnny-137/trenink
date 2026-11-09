@@ -1,5 +1,5 @@
 {
- "updated": 1794238259339,
+ "updated": 1794238262536,
  "plan": {
   "days": [
    {
@@ -1235,7 +1235,7 @@
     "Dumbbell Bench Press": [
      {
       "w": "10",
-      "r": "",
+      "r": "12",
       "done": false
      },
      {
@@ -1329,7 +1329,7 @@
    "checks": {},
    "note": "",
    "finished": false,
-   "updated": 1794238259339
+   "updated": 1794238262536
   }
  }
 }

@@ -1229,6 +1229,107 @@
    "finished": false,
    "updated": 1793985492314,
    "home": true
+  },
+  "2026-11-09": {
+   "sets": {
+    "Dumbbell Bench Press": [
+     {
+      "w": "7.5",
+      "r": "",
+      "done": false
+     },
+     {
+      "w": "12.5",
+      "r": "",
+      "done": false
+     },
+     {
+      "w": "10",
+      "r": "",
+      "done": false
+     }
+    ],
+    "Lat Pulldown": [
+     {
+      "w": "25",
+      "r": "",
+      "done": false
+     },
+     {
+      "w": "",
+      "r": "",
+      "done": false
+     },
+     {
+      "w": "",
+      "r": "",
+      "done": false
+     }
+    ],
+    "Dumbbell Shoulder Press": [
+     {
+      "w": "10",
+      "r": "",
+      "done": false
+     },
+     {
+      "w": "10",
+      "r": "",
+      "done": false
+     },
+     {
+      "w": "7.5",
+      "r": "",
+      "done": false
+     }
+    ],
+    "Seated Cable Row": [
+     {
+      "w": "20",
+      "r": "",
+      "done": false
+     },
+     {
+      "w": "20",
+      "r": "",
+      "done": false
+     },
+     {
+      "w": "20",
+      "r": "",
+      "done": false
+     }
+    ],
+    "Dumbbell Biceps Curl": [
+     {
+      "w": "10",
+      "r": "",
+      "done": false
+     },
+     {
+      "w": "10",
+      "r": "",
+      "done": false
+     }
+    ],
+    "Triceps Pushdown": [
+     {
+      "w": "17.5",
+      "r": "",
+      "done": false
+     },
+     {
+      "w": "25",
+      "r": "",
+      "done": false
+     }
+    ]
+   },
+   "metrics": {},
+   "checks": {},
+   "note": "",
+   "finished": false,
+   "updated": 0
   }
  }
 }

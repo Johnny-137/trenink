@@ -1,5 +1,5 @@
 {
- "updated": 1794240374445,
+ "updated": 1794240377330,
  "plan": {
   "days": [
    {
@@ -1269,7 +1269,7 @@
     "Dumbbell Shoulder Press": [
      {
       "w": "10",
-      "r": "",
+      "r": "10",
       "done": false
      },
      {
@@ -1329,7 +1329,7 @@
    "checks": {},
    "note": "",
    "finished": false,
-   "updated": 1794240374445
+   "updated": 1794240377330
   }
  }
 }

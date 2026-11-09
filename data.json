@@ -1,5 +1,5 @@
 {
- "updated": 1794238695508,
+ "updated": 1794240267010,
  "plan": {
   "days": [
    {
@@ -1251,7 +1251,7 @@
     ],
     "Lat Pulldown": [
      {
-      "w": "25",
+      "w": "5",
       "r": "",
       "done": false
      },
@@ -1329,7 +1329,7 @@
    "checks": {},
    "note": "",
    "finished": false,
-   "updated": 1794238695508
+   "updated": 1794240267010
   }
  }
 }

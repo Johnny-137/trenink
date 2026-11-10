@@ -1330,6 +1330,100 @@
    "note": "",
    "finished": false,
    "updated": 1794241737690
+  },
+  "2026-11-10": {
+   "sets": {
+    "Goblet Squat / Smith Machine Squat": [
+     {
+      "w": "40",
+      "r": "",
+      "done": false
+     },
+     {
+      "w": "40",
+      "r": "",
+      "done": false
+     },
+     {
+      "w": "50",
+      "r": "",
+      "done": false
+     }
+    ],
+    "Romanian Deadlift": [
+     {
+      "w": "40",
+      "r": "",
+      "done": false
+     },
+     {
+      "w": "40",
+      "r": "",
+      "done": false
+     },
+     {
+      "w": "",
+      "r": "",
+      "done": false
+     }
+    ],
+    "Lying Leg Curl": [
+     {
+      "w": "12.5",
+      "r": "",
+      "done": false
+     },
+     {
+      "w": "7.5",
+      "r": "",
+      "done": false
+     },
+     {
+      "w": "",
+      "r": "",
+      "done": false
+     }
+    ],
+    "Standing Calf Raise": [
+     {
+      "w": "",
+      "r": "",
+      "done": false
+     },
+     {
+      "w": "",
+      "r": "",
+      "done": false
+     },
+     {
+      "w": "",
+      "r": "",
+      "done": false
+     }
+    ],
+    "Plank (čas v sekundách)": [
+     {
+      "w": "",
+      "r": "",
+      "done": false
+     },
+     {
+      "w": "",
+      "r": "",
+      "done": false
+     },
+     {
+      "w": "",
+      "r": "",
+      "done": false
+     }
+    ]
+   },
+   "metrics": {},
+   "checks": {},
+   "note": "",
+   "finished": false,
+   "updated": 0
   }
  }
 }
